@@ -1,9 +1,8 @@
-<!-- This is a note 
+<!-- 
 Robert Vets
 Feb 26, 2015
 CodeFellows C26
-Final Assignment
-Visualize a data structure
+Final Assignment: Visualize a data structure
 -->
 
 <!DOCTYPE html>
@@ -14,16 +13,12 @@ Visualize a data structure
   </head>
   <body>
     <header>
-      <h1> Not the Greatest Data Visualization Homework</h1>
+      <h1> (not quite) the Greatest Data Visualization Homework</h1>
       <nav id='toplinks'>
-        <p>If this were a real website, nav links would be here. Instead here's a picture of <a id='kittens' href="http://upload.wikimedia.org/wikipedia/commons/3/3c/Witham_(Somerset)_Station,_with_a_train_for_Yatton_geograph-2545301-by-Ben-Brooksbank.jpg"> <span>kittens </span></a></p>
+        <p>If this were a real website, nav links would be here. Instead here's a picture of <a id='kittens' href="http://upload.wikimedia.org/wikipedia/commons/3/3c/Witham_(Somerset)_Station,_with_a_train_for_Yatton_geograph-2545301-by-Ben-Brooksbank.jpg"> <span> kittens </span></a></p>
       </nav>
     </header>
 
-    <section>
-      <h1>this might help</h1>
-      <p>iother</p>
-    </section>
     <section>
       <table>
         <td id='leftsidedeck'>
@@ -31,20 +26,37 @@ Visualize a data structure
           </ul> 
         </td>
 
-        <td id='center'>
-          <h1>OKey Doeky</h1>
-          <p>what a hassle</p>
-          <div id='box'>
-            <p>This is where I want to give a set of instructions</p>
-            <br>
-            <button id='bck' class='btnBasics'>this is one</button>        
-            <button id='fwd' class='btnBasics'>NEXT</button>
-          </div>
-        </td>  
+        <td id='center' >
         
+          <h1>Playing with data structures and html</h1>
+
+          <section>
+            <div class='box' id='introstep'>
+              <p>Build the CARD DOM elements using JavaScript and populate the DOM with jQuery.</p>
+              <br>    
+              <button id='start' class='btnBasics'>Get Cards</button>
+            </div>
+          </section>
+
+          <!--illn sections are hidden with CSS until the user activates them -->
+
+          <section class='illn'>
+            <div id='shufflestep'class='box'>
+              <p>Shuffle the cards by randomly selecting them and then placing them in a new part of the DOM</p>
+              <button id='shffl' class='btnBasics'>Shuffle</button> 
+            </div>
+          </section>
+
+          <section class='illn' >
+            <div id='game1' class='box'>
+              <p>Another data structure manipulation with jQuery will sort through the shuffled deck looking  for either rank or class.</p>
+              <button id='deal' class='btnBasics' align>Now What!?</button> 
+            </div>
+          </section>
+        </td>  
+          
         <td id='rightsidedeck'> 
           <ul class='deck2'>
-          
           </ul>          
         </td>  
         </table>
@@ -52,13 +64,14 @@ Visualize a data structure
 
 
     <footer id='bottomlinks'>
-      <p>bout</p>
+      <p>about</p>
       <p>stuff</p>
     </footer>
 
+  <script src="js/jquery-1.11.2.min.js"></script>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  -->
+  <script type="text/javascript" src="js/basic.js"></script>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/basic.js"></script>
 
   </body>
 </html>
