@@ -1,22 +1,20 @@
-/* this is the JavaScript file for the Data Visualization Exercise */
-/*
-
-
-  */
+/* 
+Robert Vets
+Feb28, 2015
+Code Fellows C26, Final Assignment
+this is JavaScript for the Data Visualization Exercise */
 
 var deck;
 
+/*intro*/
 $('#kittens')
 .mouseenter(function(){
-  $(this).find('span').text('ok, not kittens')
+  $(this).find('span').text('maybe kittens')
 })
 .mouseleave(function(){
-  $(this).find('span').text('maybe kittens');
+  $(this).find('span').text('OK, not kittens');
 });
-/*
-$(document).ready(function(){ -----  });
-  */
-     
+      
 $('#start').on('click', function(){
   deck = new Deck(); 
   $('#start')
@@ -37,9 +35,14 @@ $('#shffl').on('click', function(){
 $('#deal').on('click', function(){
   console.log('dealin with the shizzle');
   dealCards($('.card').length);
+  $('div#game1').remove();
+  $('div#play').css('visibility','visible');
 });
 
-
+$('#play').on('click', function(){
+  console.log('take that');
+  playHand();
+});
 
 function Card(r, s) {
   this.rank = r; 
@@ -67,25 +70,117 @@ function Deck() {
 var shuffleMove = function(m) {
   var rand, $rand;
   rand = Math.floor(Math.random() * m--);
-  console.log($('li.deck1:eq('+ rand +')'));
-  $rand = $('li.deck1:eq('+ rand +')')
+  /*console.log($('li.deck1:eq('+ rand +')'));*/
+  $rand = $('li.card:eq('+ rand +')')
   .remove()
   .prependTo($('ul.deck2'));
   console.log(rand)
   if(m) {
     setTimeout(shuffleMove, 10, m);
   }
-};
-/*
-var dealCards = function(m) {
-  console.log('more shizzle')
-  var $deal;
-  for (var i = 1; i <= m; i +2 ){
-    $deal = $('li.deck2:eq('+ i +')')
+}
+
+var dealCards = function(){
+  /* dealCards deals the dealt cards to two player, one at the right side, one on the left
+  the cards are drawn from the back of the deck*/
+  var $dealto, m;
+  m = ($('.card').length) - 1;
+  console.log('ive been called ' + m);
+  for (var i = m ; i >= 0; i -= 2){
+    console.log(i);
+    $dealto = $('.deck2 li:eq('+ i +')')
     .remove()
-    .prependTo($('ul.deck1'));
+    .prependTo($('ul.handR'));
+    console.log($('li #deck:eq('+ i +')'));
   };
 }
+
+var playHand = function(){
+  console.log('cmon granny play');
+  var $lhCsuit, $rhCsuit;
+  $lhCsuit = $('ul.handR li:eq(0)').text();
+  $rhCsuit = $('ul.deck2 li:eq(0)').text();
+  console.log($lhCsuit,$rhCsuit);
+  throwCard();
+  checkHand($lhCsuit, $rhCsuit);
+
+  /* Need to check if the game is over or Not */
+}
+
+var throwCard = function(){
+  var $rhCard, $lhCard;
+  $lhCard = $('ul.handR li:eq(0)')
+  .remove()
+  .addClass('inplay')
+  .prependTo($('#table'));
+  $rhCard = $('ul.deck2 li:eq(0)')
+  .remove()
+  .addClass('inplay')
+  .prependTo($('#table'));
+  console.log('take that!');
+}
+
+/* this is an array of simple objects */
+var values = [
+{ rank: 'A', value: 14 },
+{ rank: 'K', value: 13 },
+{ rank: 'Q', value: 12 },
+{ rank: 'J', value: 11 },
+{ rank: '10', value: 10 },
+{ rank: '9', value: 9 },
+{ rank: '8', value: 8 },
+{ rank: '7', value: 7 },
+{ rank: '6', value: 6 },
+{ rank: '5', value: 5 },
+{ rank: '4', value: 4 },
+{ rank: '3', value: 3 },
+{ rank: '2', value: 2 },
+{ rank: '1', value: 1 },
+]
+
+var checkHand = function(lhCard,rhCard){
+  console.log(lhCard);
+  var $theTake,lhVal, rhVal;
+  var m = values.length;  
+  for (var i = 0; i<m; i++){
+    var check = values[i].rank;
+    if(lhCard == values[i].rank){
+      lhVal = values[i].value;
+      console.log(lhVal);
+    }
+    if(rhCard == values[i].rank){
+      rhVal = values[i].value;
+      console.log(rhVal);
+    }
+  };
+  if (lhVal - rhVal > 0){
+    console.log('granny took it');
+    $theTake = $('#table .inplay')
+    .remove()
+    .removeClass('.inplay')
+    .prependTo($('ul.handR'));
+  };
+  if (lhVal - rhVal < 0){
+    console.log('you took it');
+    $theTake = $('#table .inplay')
+    .remove()
+    .removeClass('.inplay')
+    .prependTo($('ul.deck2'));
+  };
+  if (lhVal - rhVal == 0){
+    console.log('WAR');
+    WAR();
+  };
+}
+
+var WAR = function (){
+    throwCard();
+    throwCard();
+    throwCard();
+    playHand();
+}
+
+
 /* this is the shuffle code from class....
     var shuffle = function(m) {
       var rand, $rand;
