@@ -18,70 +18,64 @@ Final Assignment: Visualize a data structure
         <p>If this were a real website, nav links would be here. Instead here's a picture of <a id='kittens' href="http://upload.wikimedia.org/wikipedia/commons/3/3c/Witham_(Somerset)_Station,_with_a_train_for_Yatton_geograph-2545301-by-Ben-Brooksbank.jpg"> <span> kittens </span></a></p>
       </nav>
     </header>
-
-    <section>
-      <table>
-        <td id='leftsidedeck'>
-          <ul id= 'deck' class='handR' >
-          </ul> 
-        </td>
-
-        <td id='center' >
-        
-          <h1>Playing with data structures and html</h1>
-
-          <section>
-            <div class='box' id='introstep'>
-              <p>Build the CARD DOM elements using JavaScript and populate the DOM with jQuery.</p>
-              <br>    
-              <button id='start' class='btnBasics'>Get Cards</button>
-            </div>
-          </section>
-
-          <!--illn sections are hidden with CSS until the user activates them -->
-
-          <section class='illn'>
-            <div id='shufflestep'class='box'>
-              <p>Shuffle the cards by randomly selecting them and then placing them in a new part of the DOM</p>
-              <button id='shffl' class='btnBasics'>Shuffle</button> 
-            </div>
-          </section>
-
-          <section class='illn' >
-            <div id='game1' class='box'>
-              <p>Now deal those cards and see if you can beat grammie.</p>
-              <button id='deal' class='btnBasics' align>Deal em Bud</button> 
-            </div>
-          </section>
-
-          <section class='illn' >
-            <div id='play' class='box'>
-              <p>Ok, Its WAR.</p>
-              <button id='playCard' class='btnBasics' align>PLAY CARD</button> 
-            </div>
-            
-          </section>
-          <section>
-            <div id='table'>
-            </div>
-          </section>
-        </td>  
+    <div id='main'>
+      <section>
+        <table>
+          <td id='leftsidedeck'>
+            <ul id='deck' class='handL' >
+            </ul> 
+          </td>
+  
+          <td id='center' >
           
-        <td id='rightsidedeck'> 
-          <ul class='deck2'>
-          </ul>          
-        </td>  
-        </table>
-    </section>
+            <h1>Playing with data structures and html</h1>
+  
+            <section>
+              <div class='box' id='introstep'>
+                <p>Build the CARD DOM elements using JavaScript and populate the DOM with   jQuery.</p>
+                <br>    
+                <button id='start' class='btnBasics'>Get Cards</button>
+              </div>
+            
+              <div id='shufflestep'class='box illn'>
+                <p>Shuffle the cards by randomly selecting them and then placing them in a  new part of the DOM</p>
+                <button id='shffl' class='btnBasics'>Shuffle</button> 
+              </div>
+          
+              <div id='game1' class='box illn'>
+                <p>Now deal those cards and see if you can beat grammie.</p>
+                <button id='deal' class='btnBasics' align>Deal em Bud</button> 
+              </div>
+                     
+              <div id='play' class='box illn'>
+                <p id='message'>Ok, Its WAR.</p>
+                <button id='playCard' class='btnBasics' align>PLAY CARD</button> 
+                <button id='takeBtn' class='btnBasics' align>Take Cards </button> 
+              </div>
 
+              <div>
+                <ul id='table'>
+                </ul>
+              </div>
+            </section>
+          </td>  
+          
+          <td id='rightsidedeck'> 
+            <ul id='deckR' class='handR'>
+            </ul>          
+          </td>  
+          
+        </table>
+      </section>
+    </div>
 
     <footer id='bottomlinks'>
       <p>about</p>
       <p>stuff</p>
     </footer>
 
-  <script src="js/jquery-1.11.2.min.js"></script>
-  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  -->
+  <!-- <script src="js/jquery-1.11.2.min.js"></script>-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
   <script type="text/javascript" src="js/basic.js"></script>
 
 

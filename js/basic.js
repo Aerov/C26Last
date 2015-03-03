@@ -9,10 +9,10 @@ var deck;
 /*intro*/
 $('#kittens')
 .mouseenter(function(){
-  $(this).find('span').text('maybe kittens')
+  $(this).find('span').text('kittens, OK probably not')
 })
 .mouseleave(function(){
-  $(this).find('span').text('OK, not kittens');
+  $(this).find('span').text('kittens');
 });
       
 $('#start').on('click', function(){
@@ -33,14 +33,14 @@ $('#shffl').on('click', function(){
 });
 
 $('#deal').on('click', function(){
-  console.log('dealin with the shizzle');
+  /*console.log('dealin with the shizzle');*/
   dealCards($('.card').length);
   $('div#game1').remove();
   $('div#play').css('visibility','visible');
 });
 
-$('#play').on('click', function(){
-  console.log('take that');
+$('#playCard').on('click', function(){
+  /*console.log('take that');*/
   playHand();
 });
 
@@ -48,7 +48,7 @@ function Card(r, s) {
   this.rank = r; 
   this.suit = s;
   this.toHTML = function() {
-    return "<li class='card "+ this.suit +" deck1'>" + this.rank +  "</li>";
+    return "<li class='card " + this.suit + " '>" + this.rank +  "</li>";
   } 
 }
 
@@ -64,63 +64,58 @@ function Deck() {
       $('#deck').append(card.toHTML());
     });
   });
-  console.log('newdeck');
+  /*console.log('newdeck');*/
 }
 
 var shuffleMove = function(m) {
   var rand, $rand;
   rand = Math.floor(Math.random() * m--);
-  /*console.log($('li.deck1:eq('+ rand +')'));*/
+  /*console.log($('li.:eq('+ rand +')'));*/
   $rand = $('li.card:eq('+ rand +')')
   .remove()
-  .prependTo($('ul.deck2'));
-  console.log(rand)
+  .prependTo($('ul.handR'));
+  /*console.log(rand)*/
   if(m) {
-    setTimeout(shuffleMove, 10, m);
+    setTimeout(shuffleMove, 1, m);
   }
 }
 
 var dealCards = function(){
-  /* dealCards deals the dealt cards to two player, one at the right side, one on the left
-  the cards are drawn from the back of the deck*/
   var $dealto, m;
   m = ($('.card').length) - 1;
-  console.log('ive been called ' + m);
+  /* console.log('ive been called ' + m); */
   for (var i = m ; i >= 0; i -= 2){
-    console.log(i);
-    $dealto = $('.deck2 li:eq('+ i +')')
+    /* console.log(i); */
+    $dealto = $('.handR li:eq('+ i +')')
     .remove()
-    .prependTo($('ul.handR'));
-    console.log($('li #deck:eq('+ i +')'));
+    .prependTo($('ul.handL'));
+    /* console.log($('li #deck:eq('+ i +')')); */
   };
 }
 
 var playHand = function(){
-  console.log('cmon granny play');
+  /* console.log('cmon granny play'); */
   var $lhCsuit, $rhCsuit;
-  $lhCsuit = $('ul.handR li:eq(0)').text();
-  $rhCsuit = $('ul.deck2 li:eq(0)').text();
+  $lhCsuit = $('ul.handL li:eq(0)').text();
+  $rhCsuit = $('ul.handR li:eq(0)').text();
   console.log($lhCsuit,$rhCsuit);
   throwCard();
   checkHand($lhCsuit, $rhCsuit);
-
-  /* Need to check if the game is over or Not */
 }
 
 var throwCard = function(){
   var $rhCard, $lhCard;
-  $lhCard = $('ul.handR li:eq(0)')
+  $lhCard = $('ul.handL li:eq(0)')
   .remove()
   .addClass('inplay')
   .prependTo($('#table'));
-  $rhCard = $('ul.deck2 li:eq(0)')
+  $rhCard = $('ul.handR li:eq(0)')
   .remove()
   .addClass('inplay')
   .prependTo($('#table'));
   console.log('take that!');
 }
 
-/* this is an array of simple objects */
 var values = [
 { rank: 'A', value: 14 },
 { rank: 'K', value: 13 },
@@ -140,7 +135,7 @@ var values = [
 
 var checkHand = function(lhCard,rhCard){
   console.log(lhCard);
-  var $theTake,lhVal, rhVal;
+  var lhVal, rhVal;
   var m = values.length;  
   for (var i = 0; i<m; i++){
     var check = values[i].rank;
@@ -155,22 +150,19 @@ var checkHand = function(lhCard,rhCard){
   };
   if (lhVal - rhVal > 0){
     console.log('granny took it');
-    $theTake = $('#table .inplay')
-    .remove()
-    .removeClass('.inplay')
-    .prependTo($('ul.handR'));
-  };
+    takeCards($('#deck'));
+    setTimeout(function(){whoWon(1)}, 500);
+  }
   if (lhVal - rhVal < 0){
     console.log('you took it');
-    $theTake = $('#table .inplay')
-    .remove()
-    .removeClass('.inplay')
-    .prependTo($('ul.deck2'));
-  };
+    takeCards($('#deckR'));
+    setTimeout(function(){whoWon(2)}, 500); 
+  }
   if (lhVal - rhVal == 0){
     console.log('WAR');
     WAR();
-  };
+    setTimeout(function(){whoWon(3)}, 500);
+  }
 }
 
 var WAR = function (){
@@ -180,20 +172,33 @@ var WAR = function (){
     playHand();
 }
 
+var takeCards = function(inb){
+  var $theTake;
+  $('#takeBtn').on('click', function(){
+    $theTake = $('#table .inplay')
+    .remove()
+    .appendTo(inb);
+    whoWon(4);
+  });
+}
 
-/* this is the shuffle code from class....
-    var shuffle = function(m) {
-      var rand, $rand;
-      rand = Math.floor(Math.random() * m--);
-      $( 'li:eq(' + m + ')' )
-      .after($('li:eq(' + rand + ')'))
-      .insertBefore($('li:eq(' + rand + ')'))
-      if(m) {
-        setTimeout(shuffle, 1, m);
-      }
-    };
-    var deck = new Deck();
-    console.log($('.card').length);
-    shuffle($('.card').length);
-*/
+var whoWon = function(n){
+  switch(n){
+    case 1:
+      $('#message').replaceWith("<p id='message'>GRANNY</p>")
+      break;
+    case 2:
+      $('#message').replaceWith("<p id='message'>you got her</p>")
+      break;
+    case 3:
+      $('#message').replaceWith("<p id='message'>WAR!!</p>")
+       break;
+    case 4: 
+      $('#message').replaceWith("<p id='message'>next</p>")
+      break;
+    default:
+      $('#message').replaceWith("<p id='message'>oops</p>")
+      break;
+  };
+}
 
