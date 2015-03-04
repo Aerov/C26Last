@@ -6,7 +6,6 @@ this is JavaScript for the Data Visualization Exercise */
 
 var deck;
 
-/*intro*/
 $('#kittens')
 .mouseenter(function(){
   $(this).find('span').text('kittens, OK probably not')
@@ -37,6 +36,8 @@ $('#deal').on('click', function(){
   dealCards($('.card').length);
   $('div#game1').remove();
   $('div#play').css('visibility','visible');
+  $('#lplayer').replaceWith("<th id='lplayer'>Grammie</th>");
+  $('#rplayer').replaceWith("<th id='rplayer'>You</th>");
 });
 
 $('#playCard').on('click', function(){
@@ -134,7 +135,7 @@ var values = [
 ]
 
 var checkHand = function(lhCard,rhCard){
-  console.log(lhCard);
+  console.log(lhCard, rhCard);
   var lhVal, rhVal;
   var m = values.length;  
   for (var i = 0; i<m; i++){
@@ -150,12 +151,16 @@ var checkHand = function(lhCard,rhCard){
   };
   if (lhVal - rhVal > 0){
     console.log('granny took it');
-    takeCards($('#deck'));
+    $('#takeBtnR')
+    .replaceWith("<button id='takeBtn' class='btnBasics' align>Take Cards </button>");
+    takeCardsL();
     setTimeout(function(){whoWon(1)}, 500);
   }
   if (lhVal - rhVal < 0){
     console.log('you took it');
-    takeCards($('#deckR'));
+    $('#takeBtn')
+    .replaceWith("<button id='takeBtnR' class='btnBasics' align>Take Cards </button>");
+    takeCardsR();
     setTimeout(function(){whoWon(2)}, 500); 
   }
   if (lhVal - rhVal == 0){
@@ -165,21 +170,29 @@ var checkHand = function(lhCard,rhCard){
   }
 }
 
+var takeCardsL = function(){
+  $('#takeBtn').on('click', function(){
+    $('#table .inplay')
+    .remove()
+    .appendTo($('#deck'));
+    whoWon(4);
+  });
+}
+
+var takeCardsR = function(){
+  $('#takeBtnR').on('click', function(){
+    $('#table .inplay')
+    .remove()
+    .appendTo($('#deckR'));
+    whoWon(4);
+  });
+}
+
 var WAR = function (){
     throwCard();
     throwCard();
     throwCard();
     playHand();
-}
-
-var takeCards = function(inb){
-  var $theTake;
-  $('#takeBtn').on('click', function(){
-    $theTake = $('#table .inplay')
-    .remove()
-    .appendTo(inb);
-    whoWon(4);
-  });
 }
 
 var whoWon = function(n){

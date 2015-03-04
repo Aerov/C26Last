@@ -5,7 +5,6 @@ Codefellows C26
 Visualize a Data Structure
 */
 
-
 h1 {
   margin-top: 5px;
 }
@@ -24,6 +23,12 @@ body {
   color: white;
 }
 
+th {
+  font-size: 15px;
+  padding-top: 10px;
+  color: black;
+}
+
 #main {
     background-color: #36CD36; 
 }
@@ -33,6 +38,7 @@ footer {
   background-color: white; 
   border-top: 2px solid black;
   padding-top: 5px;
+  color: green;
 }
 
 #toplinks{
@@ -89,16 +95,19 @@ footer {
 
 .box{
   padding: 5px 10px 5px 10px;
-  margin-bottom: 80px;
+  margin-bottom: 10px;
   height: 150px;
   margin-right: auto;
   margin-left: auto;
   position: top;
 }
 
-
-#one {
+/*   lines em up but doesn't preserve .card size attributes
+ul#table >li{
+  display: inline;
+  height: 100px;
 }
+*/
 
 li.H {
   background-color: red;
@@ -108,8 +117,6 @@ li.H {
   background-repeat: no-repeat;
   background-position: right bottom;
   border: 2px solid white;
-
-
 }
 
 li.C {

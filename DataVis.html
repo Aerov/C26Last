@@ -21,63 +21,54 @@ Final Assignment: Visualize a data structure
     <div id='main'>
       <section>
         <table>
-          <td id='leftsidedeck'>
-            <ul id='deck' class='handL' >
-            </ul> 
-          </td>
-  
-          <td id='center' >
-          
-            <h1>Playing with data structures and html</h1>
-  
-            <section>
-              <div class='box' id='introstep'>
-                <p>Build the CARD DOM elements using JavaScript and populate the DOM with   jQuery.</p>
-                <br>    
-                <button id='start' class='btnBasics'>Get Cards</button>
-              </div>
-            
-              <div id='shufflestep'class='box illn'>
-                <p>Shuffle the cards by randomly selecting them and then placing them in a  new part of the DOM</p>
-                <button id='shffl' class='btnBasics'>Shuffle</button> 
-              </div>
-          
-              <div id='game1' class='box illn'>
-                <p>Now deal those cards and see if you can beat grammie.</p>
-                <button id='deal' class='btnBasics' align>Deal em Bud</button> 
-              </div>
-                     
-              <div id='play' class='box illn'>
-                <p id='message'>Ok, Its WAR.</p>
-                <button id='playCard' class='btnBasics' align>PLAY CARD</button> 
-                <button id='takeBtn' class='btnBasics' align>Take Cards </button> 
-              </div>
-
-              <div>
+          <tr>
+            <th id='lplayer'></th>
+            <th></th>
+            <th id='rplayer'></th>
+          </tr>
+          <tr>
+            <td id='leftsidedeck'>
+              <ul id='deck' class='handL' >
+              </ul> 
+            </td>
+            <td id='center' >
+              <h1>Playing with data structures and html</h1>
+              <section>
+                <div class='box' id='introstep'>
+                  <p>Build the CARD DOM elements using JavaScript and populate the DOM  with   jQuery.</p>
+                  <br>    
+                  <button id='start' class='btnBasics'>Get Cards</button>
+                </div>
+                <div id='shufflestep'class='box illn'>
+                  <p>Shuffle the cards by randomly selecting them and then placing them in  a  new part of the DOM</p>
+                  <button id='shffl' class='btnBasics'>Shuffle</button> 
+                </div>
+                <div id='game1' class='box illn'>
+                  <p>Now deal those cards and see if you can beat grammie.</p>
+                  <button id='deal' class='btnBasics' >Deal em Bud</button> 
+                </div> 
+                <div id='play' class='box illn'>
+                  <p id='message'>Ok, Its WAR.</p>
+                  <button id='playCard' class='btnBasics' >PLAY CARD</button> 
+                  <button id='takeBtn' class='btnBasics' >Take Cards </button> 
+                </div>
                 <ul id='table'>
                 </ul>
-              </div>
-            </section>
-          </td>  
-          
-          <td id='rightsidedeck'> 
-            <ul id='deckR' class='handR'>
-            </ul>          
-          </td>  
-          
+              </section>
+            </td>    
+            <td id='rightsidedeck'> 
+              <ul id='deckR' class='handR'>
+              </ul>          
+            </td>  
+          </tr>
         </table>
       </section>
     </div>
-
     <footer id='bottomlinks'>
       <p>about</p>
       <p>stuff</p>
     </footer>
-
   <!-- <script src="js/jquery-1.11.2.min.js"></script>-->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
-  <script type="text/javascript" src="js/basic.js"></script>
-
-
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script type="text/javascript" src="js/basic.js"></script>
   </body>
 </html>
